@@ -2,7 +2,7 @@
 /**
  * Gestion de la validation d'une fiche de frais
  *
- * PHP Version 7
+ * PHP Version 8
  *
  * @category  PPE
  * @package   GSB
@@ -13,13 +13,14 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-// choisir le visiteur et le mois concern�
+// choisir le visiteur et le mois concern�
 
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 switch ($action) {
     case 'afficherLesVisiteurs':
-        $lesVisiteurs = $spo->getTousLesVisiteurs
+        $lesVisiteurs = $spo->getTousLesVisiteurs ;
+        break;
     case 'afficherLesMois':
         $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
         // Afin de sélectionner par défaut le dernier mois dans la zone de liste
