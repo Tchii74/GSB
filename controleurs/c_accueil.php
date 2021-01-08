@@ -15,12 +15,7 @@
  */
 
 if ($estConnecte) {
-    if ($_SESSION ['type']=== "MED") {
-        include 'vues/v_accueilVisiteurMedical.php';
-    }
-    else if ($_SESSION ['type']==='COM'){
-        include 'vues/v_accueilComptable.php';
-    }
+    include 'vues/v_accueil.php';
     
 } else {
     include 'vues/v_connexion.php';

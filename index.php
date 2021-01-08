@@ -19,12 +19,8 @@ require_once 'includes/class.pdogsb.inc.php';
 session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
-if ($_SESSION ['type']=== "MED") {
-    require 'vues/v_enteteVisiteurMedical.php';
-}
-else if ($_SESSION ['type']==='COM'){
-    require 'vues/v_enteteComptable.php';
-}
+require 'vues/v_entete.php';
+
 
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
