@@ -496,7 +496,10 @@ class PdoGsb
     public function getLesVisiteurs()
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-            'SELECT visiteur.id AS id, visiteur.nom AS nom,visiteur.prenom AS prenom FROM visiteur ORDER BY nom'
+            'SELECT visiteur.id AS id, visiteur.nom AS nom,visiteur.prenom AS prenom
+             FROM visiteur 
+             where visiteur.idTypeVisiteur = "MED" 
+             ORDER BY nom '
         );
         
         $requetePrepare->execute();       
