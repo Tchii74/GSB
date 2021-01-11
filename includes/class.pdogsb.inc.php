@@ -493,18 +493,13 @@ class PdoGsb
      *
      * @return void
      */
-    public function getListeVisiteur()
+    public function getLesVisiteurs()
     {
-        $requetePrepare = PdoGSB::$monPdo->prepare(
-            'SELECT visiteur.id AS id,'
-            . 'visiteur.nom AS nom,'
-            . 'visiteur.prenom AS prenom'
-            .'FROM visiteur'
-            . 'ORDER BY ASC'
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT visiteur.id AS id, visiteur.nom AS nom,visiteur.prenom AS prenom FROM visiteur ORDER BY nom'
         );
         
-        $requetePrepare->execute();
-        
+        $requetePrepare->execute();       
         $lesVisiteurs = array();
         while ($laLigne = $requetePrepare->fetch()) {
             $id = $laLigne['id'];
