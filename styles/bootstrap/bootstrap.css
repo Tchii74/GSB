@@ -1109,6 +1109,19 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+b {
+  color: #ca7d18;
+  text-decoration: none;
+}
+b:hover,
+b:focus {
+  color: #b6924f;
+  text-decoration: underline;
+}
+b:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 figure {
   margin: 0;
 }

@@ -59,6 +59,7 @@ class PdoGsb
         PdoGsb::$monPdo->query('SET CHARACTER SET utf8');
     }
 
+
     /**
      * Méthode destructeur appelée dès qu'il n'y a plus de référence sur un
      * objet donné, ou dans n'importe quel ordre pendant la séquence d'arrêt.
@@ -488,8 +489,9 @@ class PdoGsb
         $requetePrepare->execute();
     }
     
+       
     /**
-     * getListeVisiteur
+     * getLesVisiteurs
      *
      * @return void
      */
@@ -516,4 +518,7 @@ class PdoGsb
         }
         return $lesVisiteurs;
     }
+    
+   
+
 }
