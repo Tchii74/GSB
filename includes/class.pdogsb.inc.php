@@ -437,6 +437,12 @@ class PdoGsb
         return $lesMois;
     }
 
+    /**
+     * Retourne tous les mois pour lesquel il existe au moins une fiche de frais
+     * 
+     * @return un tableau associatif de clé un mois -aaaamm- et de valeurs
+     *         l'année et le mois correspondant
+     */
     public function getTousLesMois()
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
@@ -544,14 +550,32 @@ class PdoGsb
         return $lesVisiteurs;
     }
     
-    public function ClotToutesFichesFrais($mois)
+    public function ClotToutesFichesFrais($moisPrecedent)
    {
-    $lesVisiteurs = $this->getLesVisiteurs();
-    foreach($lesVisiteurs as $unVisteur)
-    {
-        $this-> creeNouvellesLignesFrais($unVisteur['id'], $mois);
+
+    $requetePrepare = PdoGsb::$monPdo->prepare(
+        'SELECT idvisiteur, mois, idetat
+         FROM fichefrais 
+         where fichefrais.mois = :moisPrecedent' 
+    );
+    $requetePrepare->bindParam(':moisPrecedent', $moisPrecedent, PDO::PARAM_STR);
+    $requetePrepare->execute();
+    $lesFichesDuMoisPrecedent = array();
+    while ($laLigne = $requetePrepare->fetch()) {
+        $idVisiteur = $laLigne['idvisiteur'];
+        $mois = $laLigne['mois'];
+        $idetat = $laLigne['idetat'];
+
+        $lesFichesDuMoisPrecedent[] = array(
+            'idvisiteur'=> $idVisiteur,
+            'mois' => $mois,
+            'idetat'=> $idetat
+        );
+        
+        if ($idetat == 'CR') {
+            $this->majEtatFicheFrais($idVisiteur, $moisPrecedent, 'CL');
+        }
     }
-
+    
    }
-
 }

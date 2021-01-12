@@ -15,12 +15,17 @@
 
  // cloture automatique de toutes les fiches de Frais du mois qui vient de s'achever
 $mois = getMois(date('d/m/Y'));
-$numAnnee = substr($mois, 0, 4);
-$numMois = substr($mois, 4, 2);
+$moisPrecedent = new DateTime($mois);
+$moisPrecedent -> modify("-1 month");
+$moisPrecedent = $moisPrecedent->format('Ym');
+
+$pdo -> ClotToutesFichesFrais($moisPrecedent);
+
 $lesVisiteurs = $pdo->getLesVisiteurs();
-  //  foreach($lesVisiteurs as $unVisteur)
-    //{
-      //  $pdo-> creeNouvellesLignesFrais($unVisteur['id'], $mois);
+
+ // foreach($lesVisiteurs as $unVisteur)
+   // {
+     //   $pdo-> creeNouvellesLignesFrais($unVisteur['id'], $moisPrecedent);
     //}
 
 // choix du visiteur et du mois concerné pour la validation des frais
