@@ -22,8 +22,8 @@ case 'selectionnerMois':
     // Afin de sélectionner par défaut le dernier mois dans la zone de liste
     // on demande toutes les clés, et on prend la première,
     // les mois étant triés décroissants
-    $lesCles = array_keys($lesMois);
-    $moisASelectionner = $lesCles[0];
+    //$lesCles = array_keys($lesMois);
+    $moisASelectionner = $lesMois[0]['mois'];
     include 'vues/v_listeMois.php';
     break;
 case 'voirEtatFrais':
