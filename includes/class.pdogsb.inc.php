@@ -308,6 +308,8 @@ class PdoGsb
         return $dernierMois;
     }
 
+    
+
     /**
      * Crée une nouvelle fiche de frais et les lignes de frais au forfait
      * pour un visiteur et un mois donnés
@@ -435,6 +437,27 @@ class PdoGsb
         return $lesMois;
     }
 
+    public function getTousLesMois()
+    {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT DISTINCT mois '
+            . 'FROM fichefrais ORDER BY mois DESC'
+        );
+        $requetePrepare->execute();
+        $tousLesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $tousLesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+            return $tousLesMois;
+    }
+
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
      * mois donné
@@ -491,9 +514,11 @@ class PdoGsb
     
        
     /**
-     * getLesVisiteurs
+     * Retourne les visiteurs médicaux
      *
-     * @return void
+     *
+     * @return un tableau associatif de clé un visiteur -id- et de valeurs
+     *         le nom et le prénom correspondant
      */
     public function getLesVisiteurs()
     {
@@ -519,6 +544,14 @@ class PdoGsb
         return $lesVisiteurs;
     }
     
-   
+    public function ClotToutesFichesFrais($mois)
+   {
+    $lesVisiteurs = $this->getLesVisiteurs();
+    foreach($lesVisiteurs as $unVisteur)
+    {
+        $this-> creeNouvellesLignesFrais($unVisteur['id'], $mois);
+    }
+
+   }
 
 }

@@ -27,14 +27,14 @@
                         $id = $unVisiteur['id'];
                         $nom = $unVisiteur['nom'];
                         $prenom = $unVisiteur['prenom'];
-                    if ($visiteur == $visiteurASelectionner) {
+                    if ($unVisiteur['id'] == $visiteurASelectionner) {
                         ?>
-                        <option selected value="<?php echo $visiteur ?>">
+                        <option selected value="<?php ?>">
                             <?php echo $nom . ' ' . $prenom ?> </option>
                         <?php
                     } else {
                         ?>
-                        <option value="<?php echo $visiteur ?>">
+                        <option value="<?php ?>">
                             <?php echo $nom . ' ' . $prenom ?> </option>
                             <?php
                         }

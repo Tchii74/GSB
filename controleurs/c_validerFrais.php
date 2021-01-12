@@ -13,26 +13,32 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-// choisir le visiteur et le mois concerné
+ // cloture automatique de toutes les fiches de Frais du mois qui vient de s'achever
+$mois = getMois(date('d/m/Y'));
+$numAnnee = substr($mois, 0, 4);
+$numMois = substr($mois, 4, 2);
+$lesVisiteurs = $pdo->getLesVisiteurs();
+  //  foreach($lesVisiteurs as $unVisteur)
+    //{
+      //  $pdo-> creeNouvellesLignesFrais($unVisteur['id'], $mois);
+    //}
 
-
+// choix du visiteur et du mois concerné pour la validation des frais
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 switch ($action) {
 case 'selectionnerVisiteur':
-    $lesVisiteurs = $pdo->getLesVisiteurs();
 
     // Afin de sélectionner par défaut le premier visiteur dans la zone de liste
-    // on demande toutes les clés, et on prend la première,
+    //on demande le visiteur à l'indice 0 du tableau des visiteurs
     // les visiteurs étant triés par ordre alphabétique
     $visiteurASelectionner = $lesVisiteurs[0]['id'];
     include 'vues/v_listeVisiteurs.php';
 
-  
-case 'selectionnerMois':
-    $lesMois = $pdo->getLesMoisDisponibles($visiteurASelectionner);
+  case 'selectionnerMois':
+    $lesMois = $pdo->getTousLesMois();
    include 'vues/v_ListeMoisVisiteur.php';
-   
     break;
+
 case 'voirEtatFrais':
     $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
     $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
