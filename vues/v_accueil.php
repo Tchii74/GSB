@@ -83,13 +83,13 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <a href="index.php?uc=validerFrais&action=selectionnerVisiteur"
+                        <b href="index.php?uc=validerFrais&action=selectionnerVisiteur"
                            class="btn btn-success btn-lg" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <br>Valider les fiches de frais</a>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <br>Valider les fiches de frais</b>
                         <a href="index.php?uc=etatFrais&action=selectionnerMois"
                            class="btn btn-primary btn-lg" role="button">
-                            <span class="glyphicon glyphicon-list-alt"></span>
+                            <span class="glyphicon glyphicon-euro"></span>
                             <br>Suivre le paiement des fiches de frais</a>
                     </div>
                 </div>
