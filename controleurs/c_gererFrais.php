@@ -34,6 +34,7 @@ case 'validerMajFraisForfait':
         include 'vues/v_erreurs.php';
     }
     break;
+
 case 'validerCreationFrais':
     $dateFrais = filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_STRING);
     $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);

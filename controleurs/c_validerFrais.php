@@ -18,10 +18,8 @@ $mois = getMois(date('d/m/Y'));
 $moisPrecedent = new DateTime($mois);
 $moisPrecedent -> modify("-1 month");
 $moisPrecedent = $moisPrecedent->format('Ym');
-
 $pdo -> ClotToutesFichesFrais($moisPrecedent);
 
-$lesVisiteurs = $pdo->getLesVisiteurs();
 
 // choix du visiteur et du mois concerné pour la validation des frais
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
@@ -31,17 +29,19 @@ case 'selectionnerVisiteur':
     // Afin de sélectionner par défaut le premier visiteur dans la zone de liste
     //on demande le visiteur à l'indice 0 du tableau des visiteurs
     // les visiteurs étant triés par ordre alphabétique
+    $lesVisiteurs = $pdo->getLesVisiteurs();
     $visiteurASelectionner = $lesVisiteurs[0]['id'];
     $lesMois = $pdo->getTousLesMois();
     $moisASelectionner = $lesMois[0]['mois'];;
 
-
     include 'vues/v_listeVisiteurs.php';
     break;
 
+    //affiche le détail de la fiche de frais pour le visiteur et le mois selectionné
 case 'voirDetailFrais':
     $idVisiteurSelectionne = filter_input(INPUT_POST, 'lstVisiteur', FILTER_SANITIZE_STRING);
     $leMoisSelectionne = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
+
 
     // réaffichage du visiteur et du mois selectionné
     $lesVisiteurs = $pdo->getLesVisiteurs();
@@ -52,8 +52,27 @@ case 'voirDetailFrais':
 
     // affichage des détails de la fiche de frais demandée
     $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
-   
     include 'vues/v_listeFraisForfaitComptable.php';
+
+    $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
+    $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
+    include 'vues/v_listeFraisHorsForfaitComptable.php';
     break;
+
+
+
+
+    case 'corrigerMajFraisForfait':
+
+        $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        if (lesQteFraisValides($lesFrais)) {
+            $pdo->majFraisForfait($idVisiteurSelectionne, $leMoisSelectionne, $lesFrais);
+        } else {
+            ajouterErreur('Les valeurs des frais doivent être numériques');
+            include 'vues/v_erreurs.php';
+        }
+        $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
+        break;
 }
+
 

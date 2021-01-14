@@ -19,7 +19,7 @@
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
         <form method="post" 
-              action="index.php?uc=voirDetailFrais&action=validerMajFraisForfait" 
+              action="index.php?uc=validerFrais&action=corrigerMajFraisForfait" 
               role="form">
             <fieldset>       
                 <?php
@@ -27,7 +27,7 @@
                 {
                     ?>
                     <div class="row">  
-                    <h3>Pas d'éléments forfaitisés</h3>
+                    <h4>Pas d'éléments forfaitisés</h4>
                     
                     <?php
                 }
@@ -48,8 +48,8 @@
                     <?php
                 }
                 ?>
-                <button class="btn btn-success" type="submit">Ajouter</button>
-                <button class="btn btn-danger" type="reset">Effacer</button>
+                <button class="btn btn-success" type="submit">Corriger</button>
+                <button class="btn btn-danger" type="reset">Réinitialiser</button>
             </fieldset>
         </form>
     </div>
