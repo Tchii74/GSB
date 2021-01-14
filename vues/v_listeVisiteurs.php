@@ -14,7 +14,6 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 ?>
-<h2>Valider la fiche de frais</h2>
 <div class="row">
     <div class="col-md-4">
         <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
@@ -48,17 +47,17 @@
                 <select id="lstMois" name="lstMois" class="form-control">
                     <?php
                     foreach ($lesMois as $unMois) {
-                        $mois = $unMois['mois'];
+                        $lemois = $unMois['mois'];
                         $numAnnee = $unMois['numAnnee'];
                         $numMois = $unMois['numMois'];
-                        if ($mois == 1) {
+                        if ($lemois == $moisASelectionner) {
                             ?>
-                            <option selected value="<?php echo $mois ?>">
+                            <option selected value="<?php echo $lemois ?>">
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
                         } else {
                             ?>
-                            <option value="<?php echo $mois ?>">
+                            <option value="<?php echo $lemois ?>">
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
                         }
@@ -67,6 +66,7 @@
 
                 </select>
                 </div>
+                <h2>Valider la fiche de frais</h2>
                 <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
             <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 

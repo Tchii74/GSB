@@ -1,13 +1,13 @@
 <?php
 /**
- * Vue Liste des frais au forfait
+ * Vue Liste des frais au forfait pour Comptable
  *
- * PHP Version 7
+ * PHP Version 8
  *
  * @category  PPE
  * @package   GSB
  * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
+ * @author    Audrey Laval
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
@@ -16,15 +16,22 @@
 ?>
 <div class="row">  
 
-    <h2>Renseigner ma fiche de frais du mois 
-        <?php echo $numMois . '-' . $numAnnee ?>
-    </h2>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
         <form method="post" 
-              action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
+              action="index.php?uc=voirDetailFrais&action=validerMajFraisForfait" 
               role="form">
             <fieldset>       
+                <?php
+                if ($lesFraisForfait == null)
+                {
+                    ?>
+                    <div class="row">  
+                    <h3>Pas d'éléments forfaitisés</h3>
+                    
+                    <?php
+                }
+                ?>
                 <?php
                 foreach ($lesFraisForfait as $unFrais) {
                     $idFrais = $unFrais['idfrais'];
