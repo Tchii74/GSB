@@ -37,26 +37,11 @@ case 'selectionnerVisiteur':
     //on demande le visiteur à l'indice 0 du tableau des visiteurs
     // les visiteurs étant triés par ordre alphabétique
     $visiteurASelectionner = $lesVisiteurs[0]['id'];
-    include 'vues/v_listeVisiteurs.php';
-
-  case 'selectionnerMois':
     $lesMois = $pdo->getTousLesMois();
-   include 'vues/v_ListeMoisVisiteur.php';
+
+    include 'vues/v_listeVisiteurs.php';
     break;
 
-case 'voirEtatFrais':
-    $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
-    $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
-    $moisASelectionner = $leMois;
-    include 'vues/v_listeMois.php';
-    $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-    $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
-    $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
-    $numAnnee = substr($leMois, 0, 4);
-    $numMois = substr($leMois, 4, 2);
-    $libEtat = $lesInfosFicheFrais['libEtat'];
-    $montantValide = $lesInfosFicheFrais['montantValide'];
-    $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-    $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-    include 'vues/v_etatFrais.php';
+case 'voirDetailFrais':
+    $leVisiteurSelectionne = filter_input(INPUT_POST, 'lstVisiteur', FILTER_SANITIZE_STRING);
 }
