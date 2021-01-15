@@ -1,23 +1,23 @@
 <?php
 /**
- * Vue Erreurs
+ * Vue Validation
  *
- * PHP Version 7
+ * PHP Version 8
  *
  * @category  PPE
  * @package   GSB
  * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
+ * @author    Audrey Laval
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 ?>
-<div class="alert alert-danger" role="alert">
+<div class="alert validation-modif" role="alert">
     <?php
-    foreach ($_REQUEST['message'] as $erreur) {
-        echo '<p>' . htmlspecialchars($erreur) . '</p>';
+    foreach ($_REQUEST['message'] as $valide) {
+        echo '<p>' . htmlspecialchars($valide) . '</p>';
     }
     ?>
 </div>

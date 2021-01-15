@@ -67,8 +67,10 @@ case 'voirDetailFrais':
         $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
         if (lesQteFraisValides($lesFrais)) {
             $pdo->majFraisForfait($idVisiteurSelectionne, $leMoisSelectionne, $lesFrais);
+            ajouterMessage('Modification des frais forfait prise en compte');
+            include 'vues/v_validation.php';
         } else {
-            ajouterErreur('Les valeurs des frais doivent être numériques');
+            ajouterMessage('Les valeurs des frais doivent être numériques');
             include 'vues/v_erreurs.php';
         }
 

@@ -198,25 +198,25 @@ function lesQteFraisValides($lesFrais)
 function valideInfosFrais($dateFrais, $libelle, $montant)
 {
     if ($dateFrais == '') {
-        ajouterErreur('Le champ date ne doit pas être vide');
+        ajouterMessage('Le champ date ne doit pas être vide');
     } else {
         if (!estDatevalide($dateFrais)) {
-            ajouterErreur('Date invalide');
+            ajouterMessage('Date invalide');
         } else {
             if (estDateDepassee($dateFrais)) {
-                ajouterErreur(
+                ajouterMessage(
                     "date d'enregistrement du frais dépassé, plus de 1 an"
                 );
             }
         }
     }
     if ($libelle == '') {
-        ajouterErreur('Le champ description ne peut pas être vide');
+        ajouterMessage('Le champ description ne peut pas être vide');
     }
     if ($montant == '') {
-        ajouterErreur('Le champ montant ne peut pas être vide');
+        ajouterMessage('Le champ montant ne peut pas être vide');
     } elseif (!is_numeric($montant)) {
-        ajouterErreur('Le champ montant doit être numérique');
+        ajouterMessage('Le champ montant doit être numérique');
     }
 }
 
@@ -227,12 +227,12 @@ function valideInfosFrais($dateFrais, $libelle, $montant)
  *
  * @return null
  */
-function ajouterErreur($msg)
+function ajouterMessage($msg)
 {
-    if (!isset($_REQUEST['erreurs'])) {
-        $_REQUEST['erreurs'] = array();
+    if (!isset($_REQUEST['message'])) {
+        $_REQUEST['message'] = array();
     }
-    $_REQUEST['erreurs'][] = $msg;
+    $_REQUEST['message'][] = $msg;
 }
 
 /**
