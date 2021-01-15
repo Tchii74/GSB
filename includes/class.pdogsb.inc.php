@@ -578,4 +578,40 @@ class PdoGsb
     }
     
    }
+
+   public function modifieLibelle($idLigne)
+   {
+    $requetePrepare = PdoGsb::$monPdo->prepare(
+        "UPDATE  lignefraishorsforfait
+         SET libelle = CONCAT ('REFUSE : ', (select  lignefraishorsforfait.libelle 
+                                            FROM  lignefraishorsforfait 
+                                            WHERE  lignefraishorsforfait.id = :id))
+         where lignefraishorsforfait.id = :id"
+    );
+    $requetePrepare->bindParam(':idLigne', $idLigne, PDO::PARAM_STR);
+    $requetePrepare->execute();
+
+   }
+
+
+
+public function majFraisHorsForfait(
+    $idFrais,
+    $libelle,
+    $date,
+    $montant
+) {
+    $dateFr = dateFrancaisVersAnglais($date);
+    $requetePrepare = PdoGSB::$monPdo->prepare(
+        'UPDATE lignefraishorsforfait 
+        SET libelle = :unLibelle, lignefraishorsforfait.date = :uneDateFr, montant = :unMontant 
+        WHERE lignefraishorsforfait.id = :unIdFrais'
+        
+    );
+    $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':uneDateFr', $dateFr, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_INT);
+    $requetePrepare->execute();
+}
 }

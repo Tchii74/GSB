@@ -28,26 +28,44 @@
                 </tr>
             </thead>  
             <tbody>
-            <?php
+                 <div class="form-group">
+                 <form method="post" 
+              action="index.php?uc=validerFrais&action=corrigerFraisHorsForfait" 
+              role="form">
+              <?php
             foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                 $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
                 $date = $unFraisHorsForfait['date'];
                 $montant = $unFraisHorsForfait['montant'];
-                $id = $unFraisHorsForfait['id']; ?>  
-                 <div class="form-group">
-                 
+                $id = $unFraisHorsForfait['id']; ?> 
                 <tr>
-                    <td> <input type="text" value="<?php echo $date ?>"></td>
-                    <td> <input type="text" value="<?php echo $libelle ?>"></td>
-                    <td><input type="text" value="<?php echo $montant ?>"></td>
+                    <td> <input type="text" name="dateFraisHorsForfait" value="<?php echo $date ?>"></td>
+                    <td> <input type="text" name="libelleFraisHorsForfait" value="<?php echo $libelle ?>"></td>
+                    <td><input type="text" name="montantFraisHorsForfait" value="<?php echo $montant ?>"></td>
+                    <input type="hidden"
+                           name="idFraisHorsForfait" 
+                           id="idFraisHorsForfait"
+                           value="<?php echo $id?>">
+
                     <td> <input id="ok" type="submit" value="Corriger" class="btn btn-success" 
                    role="button">
-            <input id="annuler" type="reset" value="Réinitialiser" class="btn btn-danger" 
+                   <input id="annuler" type="reset" value="Réinitialiser" class="btn btn-danger" 
+                   role="button">
+                   <input id="reporter" type="report" value="Reporter" class="btn btn-success" 
+                   role="button">
+                   <input id="refuser" type="refuse" value="Refuser" class="btn btn-danger" 
                    role="button"></td>
                 </tr>
-                <?php
-               
-
+                <input type="hidden"
+                 name="idVisiteurSelectionne" 
+                 id="idVisiteurSelectionne"
+                 value="<?php echo $idVisiteurSelectionne?>">
+                 <input type="hidden"
+                 name="leMoisSelectionne" 
+                 id="leMoisSelectionne"
+                 value="<?php echo $leMoisSelectionne?>">
+                 </form>
+                <?php  
             }
             ?>
             </tbody>  
@@ -61,11 +79,15 @@
                 id="nbJustificatifs" 
                 size="1" 
                 value="<?php echo $nbJustificatifs ?>">
-<div>
                 <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
             <input id="annuler" type="reset" value="Réinitialiser" class="btn btn-danger" 
                    role="button">
 </div>
+
+<div>
+<h2>Valider la fiche de frais
+<input id="ok" type="submit" value="Valider" class="btn btn-success" 
+                   role="button">
 </div>
    

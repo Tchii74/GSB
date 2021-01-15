@@ -28,7 +28,6 @@
                     ?>
                     <div class="row">  
                     <h4>Pas d'éléments forfaitisés</h4>
-                    
                     <?php
                 }
                 ?>

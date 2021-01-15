@@ -19,7 +19,7 @@
         <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
               method="post" role="form">
             <div class="form-group">
-                <label for="lstVisiteur">Choisir le visiteur : </label>
+            <label for="lstVisiteur">Choisir le visiteur : </label>
                 <select id = "lstVisiteur" name="lstVisiteur" class="form-control">
                     <?php
                     foreach ($lesVisiteurs as $unVisiteur) {
@@ -39,9 +39,8 @@
                         }
                 }
                 ?>    
-
             </select>
-        </div>
+            </div>
         <div class="form-group">
                 <label for="lstMois" accesskey="n">Mois : </label>
                 <select id="lstMois" name="lstMois" class="form-control">
@@ -62,19 +61,12 @@
                             <?php
                         }
                     }
-                    ?>    
-
+                    ?>
+                    </tr>    
                 </select>
                 </div>
-                <h2>Valider la fiche de frais</h2>
                 <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
-            <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 
-                   role="button">
-
-
-
-
     </form>
 </div>
-</div>
+                </div>
