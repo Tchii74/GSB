@@ -60,9 +60,9 @@ case 'voirDetailFrais':
     break;
 
 
-
-
     case 'corrigerMajFraisForfait':
+        $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
+        $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
 
         $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
         if (lesQteFraisValides($lesFrais)) {
@@ -71,8 +71,24 @@ case 'voirDetailFrais':
             ajouterErreur('Les valeurs des frais doivent être numériques');
             include 'vues/v_erreurs.php';
         }
+
+        // réaffichage du visiteur et du mois selectionné
+    $lesVisiteurs = $pdo->getLesVisiteurs();
+    $lesMois = $pdo->getTousLesMois();
+    $visiteurASelectionner = $idVisiteurSelectionne;
+    $moisASelectionner = $leMoisSelectionne;
+        include 'vues/v_listeVisiteurs.php';
+
+        //réaffichage des frais forfait
         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
-        break;
+        require 'vues/v_listeFraisForfaitComptable.php';
+        
+        // réaffichage des frais hors forfait
+    $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
+    $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
+    include 'vues/v_listeFraisHorsForfaitComptable.php';
+break;
+
 }
 
 

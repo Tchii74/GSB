@@ -48,6 +48,15 @@
                     <?php
                 }
                 ?>
+                <input type="hidden"
+                 name="idVisiteurSelectionne" 
+                 id="idVisiteurSelectionne"
+                 value="<?php echo $idVisiteurSelectionne?>">
+                 <input type="hidden"
+                 name="leMoisSelectionne" 
+                 id="leMoisSelectionne"
+                 value="<?php echo $leMoisSelectionne?>">
+
                 <button class="btn btn-success" type="submit">Corriger</button>
                 <button class="btn btn-danger" type="reset">Réinitialiser</button>
             </fieldset>

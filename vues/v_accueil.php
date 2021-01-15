@@ -83,10 +83,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <b href="index.php?uc=validerFrais&action=selectionnerVisiteur"
+                        <a href="index.php?uc=validerFrais&action=selectionnerVisiteur"
                            class="btn btn-success btn-lg" role="button">
                             <span class="glyphicon glyphicon-ok"></span>
-                            <br>Valider les fiches de frais</b>
+                            <br>Valider les fiches de frais</a>
                         <a href="index.php?uc=etatFrais&action=selectionnerMois"
                            class="btn btn-primary btn-lg" role="button">
                             <span class="glyphicon glyphicon-euro"></span>
