@@ -28,12 +28,14 @@
                 </tr>
             </thead>  
             <tbody>
-                 <div class="form-group">
+              <?php
+            foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
+                ?>
+                <div class="form-group">
                  <form method="post" 
               action="index.php?uc=validerFrais&action=corrigerFraisHorsForfait" 
               role="form">
               <?php
-            foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                 $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
                 $date = $unFraisHorsForfait['date'];
                 $montant = $unFraisHorsForfait['montant'];
@@ -65,6 +67,7 @@
                  id="leMoisSelectionne"
                  value="<?php echo $leMoisSelectionne?>">
                  </form>
+                </div>
                 <?php  
             }
             ?>
