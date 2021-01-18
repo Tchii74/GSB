@@ -68,7 +68,7 @@ case 'voirDetailFrais':
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
     $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
     include 'vues/v_listeFraisHorsForfaitComptable.php';
-    //include 'vues/v_nbJustificatifs.php';
+    include 'vues/v_validationFicheFrais.php';
     }    
 
     break;
@@ -103,6 +103,9 @@ case 'voirDetailFrais':
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
         $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
         include 'vues/v_listeFraisHorsForfaitComptable.php';
+        // réaffichage du bouton de validation de la fiche de frais
+        include 'vues/v_validationFicheFrais.php';
+
     break;
     
         // action modifier les frais hors forfait
@@ -171,7 +174,9 @@ case 'voirDetailFrais':
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
         $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
         include 'vues/v_listeFraisHorsForfaitComptable.php';
-        //include 'vues/v_nbJustificatifs.php';
+
+        // réaffichage du bouton de validation de la fiche de frais
+        include 'vues/v_validationFicheFrais.php';
     break;
 
 
@@ -195,11 +200,19 @@ case 'voirDetailFrais':
         $nbJustificatifs = filter_input(INPUT_POST, 'nbJustificatifs', FILTER_SANITIZE_STRING);
         $pdo ->majNbJustificatifs($idVisiteurSelectionne, $leMoisSelectionne, $nbJustificatifs);
         include 'vues/v_listeFraisHorsForfaitComptable.php';
-        //include 'vues/v_nbJustificatifs.php';
+
+        // réaffichage du bouton de validation de la fiche de frais
+        include 'vues/v_validationFicheFrais.php';
     break;
 
     case 'validerFicheFrais':
+     $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
+     $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
+     $pdo -> majEtatFicheFrais($idVisiteurSelectionne,$leMoisSelectionne,'VA');
 
+        ajouterMessage('Validation de la fiche de frais effectuée');
+        include 'vues/v_validation.php';
+        break;
 }
 
 
