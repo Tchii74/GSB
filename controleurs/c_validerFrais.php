@@ -68,7 +68,7 @@ case 'voirDetailFrais':
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
     $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
     include 'vues/v_listeFraisHorsForfaitComptable.php';
-    include 'vues/v_nbJustificatifs.php';
+    //include 'vues/v_nbJustificatifs.php';
     }    
 
     break;
@@ -171,7 +171,7 @@ case 'voirDetailFrais':
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
         $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
         include 'vues/v_listeFraisHorsForfaitComptable.php';
-        include 'vues/v_nbJustificatifs.php';
+        //include 'vues/v_nbJustificatifs.php';
     break;
 
 
@@ -189,14 +189,17 @@ case 'voirDetailFrais':
         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
         require 'vues/v_listeFraisForfaitComptable.php';
         
-        // réaffichage des frais hors forfait
+        // réaffichage des frais hors forfait et le nb de justificatifs modifié
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
-        include 'vues/v_listeFraisHorsForfaitComptable.php';
-
+        
         $nbJustificatifs = filter_input(INPUT_POST, 'nbJustificatifs', FILTER_SANITIZE_STRING);
         $pdo ->majNbJustificatifs($idVisiteurSelectionne, $leMoisSelectionne, $nbJustificatifs);
-        include 'vues/v_nbJustificatifs.php';
+        include 'vues/v_listeFraisHorsForfaitComptable.php';
+        //include 'vues/v_nbJustificatifs.php';
     break;
+
+    case 'validerFicheFrais':
+
 }
 
 

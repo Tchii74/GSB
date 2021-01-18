@@ -121,9 +121,10 @@ class PdoGsb
     public function getLesFraisHorsForfait($idVisiteur, $mois)
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-            'SELECT * FROM lignefraishorsforfait '
-            . 'WHERE lignefraishorsforfait.idvisiteur = :unIdVisiteur '
-            . 'AND lignefraishorsforfait.mois = :unMois'
+            "SELECT * FROM lignefraishorsforfait 
+            WHERE lignefraishorsforfait.idvisiteur = :unIdVisiteur 
+            AND lignefraishorsforfait.mois = :unMois
+            AND lignefraishorsforfait.idetatligne != 'RE'"
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
@@ -639,7 +640,7 @@ class PdoGsb
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
             "UPDATE  lignefraishorsforfait
-             SET  idetatligne = 'RF'
+             SET  idetatligne = 'RE'
              where lignefraishorsforfait.id = :idLigne"
              );
            $requetePrepare->bindParam(':idLigne', $idLigne, PDO::PARAM_STR);

@@ -22,6 +22,7 @@
                  name="leMoisSelectionne" 
                  id="leMoisSelectionne"
                  value="<?php echo $leMoisSelectionne?>">
+                 </form>
 </div>
 </div>
 
