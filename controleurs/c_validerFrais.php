@@ -107,31 +107,56 @@ case 'voirDetailFrais':
     
         // action modifier les frais hors forfait
     case 'corrigerFraisHorsForfait':
+        $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
+        $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
+        $leMoisSuivant = new DateTime($mois);
+        $leMoisSuivant -> modify("+1 month");
+        $leMoisSuivant = $leMoisSuivant->format('Ym');
+        $dateFrais = filter_input(INPUT_POST, 'dateFraisHorsForfait', FILTER_SANITIZE_STRING);
+        $libelle = filter_input(INPUT_POST, 'libelleFraisHorsForfait', FILTER_SANITIZE_STRING);
+        $montant = filter_input(INPUT_POST, 'montantFraisHorsForfait', FILTER_VALIDATE_FLOAT);
+
+        $idFraisHFaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
       // si bouton refuser
       if (isset($_POST['Refuser'])){
-          $idFraisHFaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
-          $pdo ->  modifieLibelle($idFraisHFaModifier);
+          $pdo -> refuseLigneFrais($idFraisHFaModifier);
         }
       // si bouton reporter 
+      elseif (isset($_POST['Reporter'])){
+        
+        $pdo -> reporteLigneFrais($idFraisHFaModifier);
 
+          if ($pdo->estPremierFraisMois($idVisiteurSelectionne, $leMoisSuivant)) {
+             $pdo->creeNouvellesLignesFrais($idVisiteurSelectionne, $leMoisSuivant);
+             
+             valideInfosFrais($dateFrais, $libelle, $montant);
+             if (nbErreurs() != 0) {
+                 include 'vues/v_erreurs.php';
+                } 
+            }
+            else {
+                 $pdo->creeNouveauFraisHorsForfait(
+                     $idVisiteurSelectionne,
+                     $leMoisSuivant,
+                     $libelle,
+                     $dateFrais,
+                     $montant,
+                    'CR');
+                 
+                }
+            }
+            
       //sinon bouton corriger
         else {
-
-
-         $idFraisaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
-         $dateFraisaModifier = filter_input(INPUT_POST, 'dateFraisHorsForfait', FILTER_SANITIZE_STRING);
-         $libelleFraisaModifier = filter_input(INPUT_POST, 'libelleFraisHorsForfait', FILTER_SANITIZE_STRING);
-         $montantFraisaModifier = filter_input(INPUT_POST, 'montantFraisHorsForfait', FILTER_SANITIZE_STRING);
          $pdo->majFraisHorsForfait(
-            $idFraisaModifier,
-            $libelleFraisaModifier,
-            $dateFraisaModifier,
-            $montantFraisaModifier
+            $idFraisHFaModifier,
+            $libelle,
+            $dateFrais,
+            $montant
          );
         }
         // réaffichage du visiteur et du mois selectionné
-        $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
-        $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
+       
         $lesVisiteurs = $pdo->getLesVisiteurs();
         $lesMois = $pdo->getTousLesMois();
         $visiteurASelectionner = $idVisiteurSelectionne;
