@@ -107,17 +107,28 @@ case 'voirDetailFrais':
     
         // action modifier les frais hors forfait
     case 'corrigerFraisHorsForfait':
-        $idFraisaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
-        $dateFraisaModifier = filter_input(INPUT_POST, 'dateFraisHorsForfait', FILTER_SANITIZE_STRING);
-        $libelleFraisaModifier = filter_input(INPUT_POST, 'libelleFraisHorsForfait', FILTER_SANITIZE_STRING);
-        $montantFraisaModifier = filter_input(INPUT_POST, 'montantFraisHorsForfait', FILTER_SANITIZE_STRING);
-        $pdo->majFraisHorsForfait(
+      // si bouton refuser
+      if (isset($_POST['Refuser'])){
+          $idFraisHFaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
+          $pdo ->  modifieLibelle($idFraisHFaModifier);
+        }
+      // si bouton reporter 
+
+      //sinon bouton corriger
+        else {
+
+
+         $idFraisaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
+         $dateFraisaModifier = filter_input(INPUT_POST, 'dateFraisHorsForfait', FILTER_SANITIZE_STRING);
+         $libelleFraisaModifier = filter_input(INPUT_POST, 'libelleFraisHorsForfait', FILTER_SANITIZE_STRING);
+         $montantFraisaModifier = filter_input(INPUT_POST, 'montantFraisHorsForfait', FILTER_SANITIZE_STRING);
+         $pdo->majFraisHorsForfait(
             $idFraisaModifier,
             $libelleFraisaModifier,
             $dateFraisaModifier,
             $montantFraisaModifier
-        );
-
+         );
+        }
         // réaffichage du visiteur et du mois selectionné
         $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
         $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
@@ -136,12 +147,7 @@ case 'voirDetailFrais':
         $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
         include 'vues/v_listeFraisHorsForfaitComptable.php';
         include 'vues/v_nbJustificatifs.php';
-        break;
-
-    case 'refuserFraisHorsForfait':
-        $idFraisaModifier = filter_input(INPUT_POST, 'idFraisHorsForfait', FILTER_SANITIZE_STRING);
-        $pdo->modifieLibelle($idFraisaModifier);
-        break;
+    break;
 
 
     case 'corrigerNbJustificatifs':
@@ -165,7 +171,7 @@ case 'voirDetailFrais':
         $nbJustificatifs = filter_input(INPUT_POST, 'nbJustificatifs', FILTER_SANITIZE_STRING);
         $pdo ->majNbJustificatifs($idVisiteurSelectionne, $leMoisSelectionne, $nbJustificatifs);
         include 'vues/v_nbJustificatifs.php';
-        break;
+    break;
 }
 
 

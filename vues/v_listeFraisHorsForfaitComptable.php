@@ -53,9 +53,9 @@
                    role="button">
                    <input id="annuler" type="reset" value="Réinitialiser" class="btn btn-danger" 
                    role="button">
-                   <input id="reporter" type="report" value="Reporter" class="btn btn-success" 
+                   <input id="reporter" type="submit" name ="Reporter" value="Reporter" class="btn btn-success" 
                    role="button">
-                   <input id="refuser" type="refuse" value="Refuser" class="btn btn-danger" 
+                   <input id="refuser" type="submit" name ="Refuser" value="Refuser" class="btn btn-danger" 
                    role="button"></td>
                 </tr>
                 <input type="hidden"

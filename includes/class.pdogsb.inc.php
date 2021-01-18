@@ -585,8 +585,8 @@ class PdoGsb
         "UPDATE  lignefraishorsforfait
          SET libelle = CONCAT ('REFUSE : ', (select  lignefraishorsforfait.libelle 
                                             FROM  lignefraishorsforfait 
-                                            WHERE  lignefraishorsforfait.id = :id))
-         where lignefraishorsforfait.id = :id"
+                                            WHERE  lignefraishorsforfait.id = :idLigne))
+         where lignefraishorsforfait.id = :idLigne"
     );
     $requetePrepare->bindParam(':idLigne', $idLigne, PDO::PARAM_STR);
     $requetePrepare->execute();
