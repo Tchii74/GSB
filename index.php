@@ -44,6 +44,8 @@ case 'etatFrais':
 case 'validerFrais' :
     include 'controleurs/c_validerFrais.php';
     break;
+case 'suivreFrais':
+    include 'controleurs/c_suivreFrais.php';
 case 'deconnexion':
     include 'controleurs/c_deconnexion.php';
     break;

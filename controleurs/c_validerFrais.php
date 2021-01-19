@@ -208,8 +208,9 @@ case 'voirDetailFrais':
     case 'validerFicheFrais':
      $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
      $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne', FILTER_SANITIZE_STRING);
+     $pdo-> valideLigneFraisHorsForfait($idVisiteurSelectionne,$leMoisSelectionne);
      $pdo -> majEtatFicheFrais($idVisiteurSelectionne,$leMoisSelectionne,'VA');
-
+     $pdo -> majMontantFraisValide($idVisiteurSelectionne,$leMoisSelectionne);
         ajouterMessage('Validation de la fiche de frais effectuée');
         include 'vues/v_validation.php';
         break;
