@@ -445,9 +445,36 @@ class PdoGsb
     public function getTousLesMois()
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-            'SELECT DISTINCT mois '
+            'SELECT DISTINCT mois, idvisiteur '
             . 'FROM fichefrais ORDER BY mois DESC'
         );
+        $requetePrepare->execute();
+        $tousLesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $idVisiteur = $laLigne['idvisiteur'];
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $tousLesMois[] = array(
+                'idvisiteur' =>$idVisiteur,
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+            return $tousLesMois;
+    }
+
+    public function getLesMoisFicheValide($idVisiteur)
+    {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            "SELECT DISTINCT mois, idVisiteur
+            FROM fichefrais 
+            WHERE fichefrais.idetat = 'VA'
+            AND idvisiteur = :unIdVisiteur
+            ORDER BY mois DESC"
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
         $tousLesMois = array();
         while ($laLigne = $requetePrepare->fetch()) {
@@ -719,6 +746,27 @@ class PdoGsb
         
     }
 
+    public function ficheValideExiste ($idVisiteur, $mois)
+    {
+        $boolReturn = false;
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            "SELECT fichefrais.idvisiteur 
+            FROM  fichefrais
+            where idvisiteur = :unIdVisiteur 
+            AND mois = :unMois
+            AND idetat = 'VA'"
+        );
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+    $requetePrepare->execute();
+    if (!$requetePrepare->fetch()) {
+        $boolReturn = true;
+    }
+    return $boolReturn;
+
+    }
+    
+    
     
 
 

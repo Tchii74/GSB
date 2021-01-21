@@ -102,6 +102,14 @@
                                     Valider les fiches de frais
                                 </a>
                             </li>
+
+                            <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=suivreFrais&action=choisirFiche">
+                                    <span class="glyphicon glyphicon-euro"></span>
+                                    Suivre le paiement des fiches de frais
+                                </a>
+                            </li>
+
                             <li 
                             <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
@@ -123,4 +131,7 @@
                          title="Laboratoire Galaxy-Swiss Bourdin">
                 </h1>
                 <?php
-            }
+            }?>
+</body>
+    <script type="text/javascript" src= "styles/app.js"></script>
+</html>

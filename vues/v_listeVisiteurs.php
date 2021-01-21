@@ -15,32 +15,35 @@
  */
 ?>
 <div class="row">
-    <div class="col-md-4">
-        <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
+    <div class ="span3">
+        <div class="col-md-4">
+         <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
               method="post" role="form">
-            <div class="form-group">
-            <label for="lstVisiteur">Choisir le visiteur : </label>
-                <select id = "lstVisiteur" name="lstVisiteur" class="form-control">
+                <div class="form-group">
+                <label for="lstVisiteur">Choisir le visiteur : </label>
+                    <select id = "lstVisiteur" name="lstVisiteur" class="form-control">
                     <?php
-                    foreach ($lesVisiteurs as $unVisiteur) {
+                        foreach ($lesVisiteurs as $unVisiteur) {
                         $id = $unVisiteur['id'];
                         $nom = $unVisiteur['nom'];
                         $prenom = $unVisiteur['prenom'];
-                    if ($unVisiteur['id'] == $visiteurASelectionner) {
-                        ?>
-                        <option selected value="<?php echo $id?>">
-                            <?php echo $nom . ' ' . $prenom ?> </option>
-                        <?php
-                    } else {
-                        ?>
-                        <option value="<?php echo $id ?>">
-                            <?php echo $nom . ' ' . $prenom ?> </option>
-                            <?php
-                        }
-                }
-                ?>    
-            </select>
-            </div>
+                            if ($unVisiteur['id'] == $visiteurASelectionner) {
+                                ?>
+                                <option selected value="<?php echo $id?>">
+                                <?php echo $nom . ' ' . $prenom ?> </option>
+                                <?php
+                            } else 
+                            {
+                                ?>
+                                <option value="<?php echo $id ?>">
+                                <?php echo $nom . ' ' . $prenom ?> </option>
+                                <?php
+                            }
+                        }?>    
+                    </select>
+                </div>
+            
+
         <div class="form-group">
                 <label for="lstMois" accesskey="n">Mois : </label>
                 <select id="lstMois" name="lstMois" class="form-control">
@@ -65,8 +68,9 @@
                     </tr>    
                 </select>
                 </div>
+</div>
                 <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
     </form>
 </div>
-                </div>
+ </div>
