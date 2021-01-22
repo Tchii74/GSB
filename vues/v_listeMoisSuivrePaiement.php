@@ -52,22 +52,31 @@
                             </select>
                         </div>
                     </select>
-
                     <div class ="span3">
                         <div class = "control-group">
                         <label for="lstMois">Choisir le mois : </label>
                             <?php
+                            $idParDefault=array_key_first($lesMoisParVisiteur);
+                            $tousLesId =array();
                             foreach ($lesMoisParVisiteur as $key =>$moisduVisiteur): 
-                            $id = $key; ?>                                
-                            <select id = "<?= $id; ?>" style = "visibility:hidden; display:none" >
+                            $tousLesId[]= "$key";
+                            $id = $key;
+                             ?>                                
+                            <select id = "<?= $id; ?>" name = "<?= $id; ?>" class ="form-control toto" style=  "<?php if ($id == $idParDefault)
+                                                                 {
+                                                                    echo "visibility:visible; display:block";
+                                                                 }
+                                                                else{
+                                                                    echo "visibility:hidden; display:none" ;
+                                                                    } ?>">
                                 <?php foreach ($moisduVisiteur as $moisparVisiteur): ?>
-                                <option value="<?=$id; ?>"><?=$moisparVisiteur; ?></option>
+                                <option  value="<?=$moisparVisiteur;?>"><?=$moisparVisiteur; ?></option>
                                 <?php endforeach?>
                             </select>
                             <?php endforeach?>
                         </div>                        
                     </div>
-
+                  
                     <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                     role="button">
                 </form>
