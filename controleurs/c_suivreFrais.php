@@ -41,10 +41,10 @@ case 'voirFrais':
         include 'vues/v_erreurs.php';
         // réaffichage du visiteur et du mois selectionné
         $lesVisiteurs = $pdo->getLesVisiteurs();
+        $visiteurASelectionner = $lesVisiteurs[0]['id'];
+        
         $lesMois = $pdo->getTousLesMois();
-        $visiteurASelectionner = $idVisiteurSelectionne;
-        $moisASelectionner = $leMoisSelectionne;
-        include 'vues/v_listeVisiteurs.php';
+       include 'vues/v_listeMoisSuivrePaiement.php';
 
     } else {
 
