@@ -67,7 +67,7 @@
                                                                     echo "visibility:hidden; display:none" ;
 
                                                                 } ?>"
-                                                                >Pas de fiche de frais à valider pour visiteur</p>
+                                                                >Pas de fiche de frais à valider pour ce visiteur</p>
 
 
                             <?php endforeach;

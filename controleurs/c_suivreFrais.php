@@ -47,7 +47,18 @@ case 'voirFrais':
        include 'vues/v_listeMoisSuivrePaiement.php';
 
     } else {
-
+        $lesVisiteurs = $pdo->getLesVisiteurs();
+        foreach ($lesVisiteurs as $unVisiteur) {
+            $id = $unVisiteur['id'];
+            $nom = $unVisiteur['nom'];
+            $prenom = $unVisiteur['prenom'];
+        
+            if ($idVisiteurSelectionne == $unVisiteur['id'])
+            {
+               $nomAfficher = $unVisiteur['nom'];
+               $prenomAfficher = $unVisiteur['prenom'];
+            }
+        }
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionne, $leMoisSelectionne);
@@ -57,7 +68,7 @@ case 'voirFrais':
         $montantValide = $lesInfosFicheFrais['montantValide'];
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-        include 'vues/v_etatFrais.php';
+        include 'vues/v_etatFraisComptable.php';
         //affichage des bouttons de modification de l'état de la fiche de frais
         $idEtat = $pdo ->getEtatFiche($idVisiteurSelectionne, $leMoisSelectionne);
         if ($idEtat == 'VA')
@@ -92,7 +103,7 @@ case 'voirFrais':
         $montantValide = $lesInfosFicheFrais['montantValide'];
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-        include 'vues/v_etatFrais.php';
+        include 'vues/v_etatFraisComptable.php';
         include 'vues/v_rembourserFrais.php';
 
         break;
@@ -113,7 +124,7 @@ case 'voirFrais':
          $montantValide = $lesInfosFicheFrais['montantValide'];
          $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
          $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-         include 'vues/v_etatFrais.php';
+         include 'vues/v_etatFraisComptable.php';
 
         break;
 }

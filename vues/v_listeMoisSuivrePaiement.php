@@ -20,6 +20,7 @@
             <div class = "control-group">
                 <form action="index.php?uc=suivreFrais&action=voirFrais" 
                     method="post" role="form">
+                    <h2>Suivre le paiement des fiches de frais</h2>
                     <?php
                     $lesVisiteurs;
                     $lesMois;
@@ -69,8 +70,10 @@
                                                                 else{
                                                                     echo "visibility:hidden; display:none" ;
                                                                     } ?>">
-                                <?php foreach ($moisduVisiteur as $moisparVisiteur): ?>
-                                <option  value="<?=$moisparVisiteur;?>"><?=$moisparVisiteur; ?></option>
+                                <?php foreach ($moisduVisiteur as $moisparVisiteur): 
+                                    $numAnnee = substr($moisparVisiteur, 0, 4);
+                                    $numMois = substr($moisparVisiteur, 4, 2);?>
+                                <option  value="<?=$moisparVisiteur;?>"><?= $numMois . '-' . $numAnnee ?></option>
                                 <?php endforeach?>
                             </select>
                             <?php endforeach?>
