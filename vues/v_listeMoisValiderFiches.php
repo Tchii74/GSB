@@ -31,7 +31,7 @@
                     </select>
                         <div class="form-group">
                         <label for="Visiteur">Choisir le visiteur : </label>
-                            <select id = "lstVisiteur" name="lstVisiteur" class="form-control" onchange="myfunction()">
+                            <select id = "lstVisiteur" name="lstVisiteur" class="form-control" onload = "myfunction()" onchange="myfunction()">
                                 <?php
                                 foreach ($lesVisiteurs as $unVisiteur) {
                                 $id = $unVisiteur['id'];
@@ -55,23 +55,29 @@
                         <div class = "control-group">
                         <label for="lstMois">Choisir le mois : </label>
                             <?php
-                            $idParDefault=array_key_first($lesMoisParVisiteur);
                             $tousLesId =array();
                             
                             foreach ($visiteurToutValider as $unIdVisiteur):
                             ?>
-                            <p id = "<?= $unIdVisiteur; ?>" name = "<?= $unIdVisiteur; ?>" class =" mois" style = "visibility:hidden; display:none" >Pas de fiche de frais à valider pour visiteur</p>
+                            <p id = "<?= $unIdVisiteur; ?>" name = "<?= $unIdVisiteur; ?>" class =" mois" style = "<?php if ($unIdVisiteur == $visiteurASelectionner)
+                                                                 {
+                                                                    echo "visibility:visible; display:block";                                                                  
+                                                                }
+                                                                else{
+                                                                    echo "visibility:hidden; display:none" ;
+
+                                                                } ?>"
+                                                                >Pas de fiche de frais à valider pour visiteur</p>
+
 
                             <?php endforeach;
-                            
-
                             
 
                             foreach ($lesMoisParVisiteur as $key =>$moisduVisiteur): 
                             $tousLesId[]= "$key";
                             $id = $key;
                              ?>                                
-                            <select id = "<?= $id; ?>" name = "<?= $id; ?>" class ="form-control mois" style=  "<?php if ($id == $idParDefault)
+                            <select id = "<?= $id; ?>" name = "<?= $id; ?>" class ="form-control mois" style=  "<?php if ($id == $visiteurASelectionner)
                                                                  {
                                                                     echo "visibility:visible; display:block";
                                                                  }

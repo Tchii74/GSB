@@ -16,7 +16,7 @@
 ?>
 
 <div class="alert validation-modif" role="alert">
-    <p>La fiche à bien été validée ! 
+    <p>La fiche a bien été validée ! 
         <a href="index.php?uc=validerFrais&action=selectionnerVisiteur">Retour au choix des fiches
         </a>
     </p>

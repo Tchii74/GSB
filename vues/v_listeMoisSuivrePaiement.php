@@ -32,7 +32,7 @@
                     </select>
                         <div class="form-group">
                         <label for="lstVisiteur">Choisir le visiteur : </label>
-                            <select id = "lstVisiteur" name="Visiteur" class="form-control" onchange="myfunction()">
+                            <select id = "lstVisiteur" name="Visiteur" class="form-control" onload ="myfunction()" onchange="myfunction()">
                                 <?php
                                 foreach ($lesVisiteurs as $unVisiteur) {
                                 $id = $unVisiteur['id'];
@@ -56,13 +56,13 @@
                         <div class = "control-group">
                         <label for="lstMois">Choisir le mois : </label>
                             <?php
-                            $idParDefault=array_key_first($lesMoisParVisiteur);
+                           
                             $tousLesId =array();
                             foreach ($lesMoisParVisiteur as $key =>$moisduVisiteur): 
                             $tousLesId[]= "$key";
                             $id = $key;
                              ?>                                
-                            <select id = "<?= $id; ?>" name = "<?= $id; ?>" class ="form-control mois" style=  "<?php if ($id == $idParDefault)
+                            <select id = "<?= $id; ?>" name = "<?= $id; ?>" class ="form-control mois" style=  "<?php if ($id == $visiteurASelectionner)
                                                                  {
                                                                     echo "visibility:visible; display:block";
                                                                  }
