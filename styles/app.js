@@ -1,7 +1,7 @@
 
 function myfunction(){
-    //
-  var elements =  document.getElementsByClassName('toto');
+    //cache les tous select
+  var elements =  document.getElementsByClassName('mois');
   for (var i =0; i<elements.length; i++)
   {
     elements[i].style.visibility="hidden";
@@ -9,9 +9,9 @@ function myfunction(){
 
   };
     //recupere l'id du visiteur selectionné et affiche les mois liés
-$id = document.getElementById('Visiteur').value;
-document.getElementById($id).style.visibility="visible";
-document.getElementById($id).style.display="block";
+var id = document.getElementById('lstVisiteur').value;
+document.getElementById(id).style.visibility="visible";
+document.getElementById(id).style.display="block";
 
 
 }

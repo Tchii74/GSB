@@ -58,7 +58,62 @@ case 'voirFrais':
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include 'vues/v_etatFrais.php';
+        //affichage des bouttons de modification de l'état de la fiche de frais
+        $idEtat = $pdo ->getEtatFiche($idVisiteurSelectionne, $leMoisSelectionne);
+        if ($idEtat == 'VA')
+        {
+            include 'vues/v_mettreEnPaiement.php';
+        }
+        elseif ($idEtat=='MP')
+        {
+            include 'vues/v_rembourserFrais.php';
+        }
+        else
+        {
+            //plus de modifications à effectuer
+        }
     }    
 
     break;
+
+    case 'mettreEnPaiement':
+        //modification de l'état de la fiche de frais
+        $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
+        $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne' , FILTER_SANITIZE_STRING);
+        $pdo -> majEtatFicheFrais($idVisiteurSelectionne,$leMoisSelectionne,'MP');
+
+        // réaffichage des infos de la fiches
+        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
+        $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
+        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionne, $leMoisSelectionne);
+        $numAnnee = substr($leMoisSelectionne, 0, 4);
+        $numMois = substr($leMoisSelectionne, 4, 2);
+        $libEtat = $lesInfosFicheFrais['libEtat'];
+        $montantValide = $lesInfosFicheFrais['montantValide'];
+        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
+        $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
+        include 'vues/v_etatFrais.php';
+        include 'vues/v_rembourserFrais.php';
+
+        break;
+
+    case 'confirmerRemboursement':
+        //modification de l'état de la fiche de frais
+        $idVisiteurSelectionne = filter_input(INPUT_POST, 'idVisiteurSelectionne', FILTER_SANITIZE_STRING);
+        $leMoisSelectionne = filter_input(INPUT_POST, 'leMoisSelectionne' , FILTER_SANITIZE_STRING);
+        $pdo -> majEtatFicheFrais($idVisiteurSelectionne,$leMoisSelectionne,'RB');
+
+         // réaffichage des infos de la fiches
+         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
+         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
+         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionne, $leMoisSelectionne);
+         $numAnnee = substr($leMoisSelectionne, 0, 4);
+         $numMois = substr($leMoisSelectionne, 4, 2);
+         $libEtat = $lesInfosFicheFrais['libEtat'];
+         $montantValide = $lesInfosFicheFrais['montantValide'];
+         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
+         $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
+         include 'vues/v_etatFrais.php';
+
+        break;
 }

@@ -465,26 +465,31 @@ class PdoGsb
             return $tousLesMois;
     }
 
-    public function getLesMoisFicheValide($idVisiteur)
+
+     /**
+     * Retourne tous les mois pour lesquel il existe une fiche de frais cloturée (à valider)
+     * 
+     * @return un tableau associatif de clé un mois -aaaamm- et de valeurs
+     *         l'année et le mois correspondant
+     */
+    public function getLesMoisFicheCloturee()
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-            "SELECT DISTINCT mois, idVisiteur
+            "SELECT DISTINCT mois, idvisiteur
             FROM fichefrais 
-            WHERE fichefrais.idetat = 'VA'
-            AND idvisiteur = :unIdVisiteur
-            ORDER BY mois DESC"
+            WHERE fichefrais.idetat = 'CL'"
         );
-        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        
         $requetePrepare->execute();
         $tousLesMois = array();
         while ($laLigne = $requetePrepare->fetch()) {
+            $idVisiteur = $laLigne['idvisiteur'];
             $mois = $laLigne['mois'];
-            $numAnnee = substr($mois, 0, 4);
-            $numMois = substr($mois, 4, 2);
+            
             $tousLesMois[] = array(
+                'idvisiteur' =>$idVisiteur,
                 'mois' => $mois,
-                'numAnnee' => $numAnnee,
-                'numMois' => $numMois
+                
             );
         }
             return $tousLesMois;
@@ -754,7 +759,9 @@ class PdoGsb
             FROM  fichefrais
             where idvisiteur = :unIdVisiteur 
             AND mois = :unMois
-            AND idetat = 'VA'"
+            AND (idetat = 'VA'
+            OR idetat = 'MP'
+            OR idetat = 'RB')"
         );
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
     $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
@@ -766,7 +773,22 @@ class PdoGsb
 
     }
     
-    
+    public function getEtatFiche($idVisiteur, $mois)
+    {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            "SELECT fichefrais.idetat as idEtat
+            FROM  fichefrais
+            where idvisiteur = :unIdVisiteur
+            AND mois = :unMois "
+
+        );
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        
+        $laLigne = $requetePrepare->fetch();
+        return $laLigne['idEtat'];
+    }
     
 
 

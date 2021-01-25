@@ -1,6 +1,6 @@
 <?php
 /**
- * Vue validation des fiches de frais 
+ * Vue validation du remboursement des fiches de frais
  *
  * PHP Version 8
  *
@@ -16,9 +16,9 @@
 ?>
 
 <form method="post" 
-              action="index.php?uc=validerFrais&action=validerFicheFrais" 
+              action="index.php?uc=suivreFrais&action=confirmerRemboursement" 
               role="form">
-<input id="ok" type="submit" value="Valider la Fiche de Frais" class="btn btn-success" 
+<input id="ok" type="submit" value="Confirmer remboursement" class="btn btn-success" 
                    role="button">
 
                    <input type="hidden"

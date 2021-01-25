@@ -18,11 +18,10 @@
     <div class ="span3">
         <div class="col-md-4">
             <div class = "control-group">
-                <form action="index.php?uc=suivreFrais&action=voirFrais" 
+                <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
                     method="post" role="form">
+                    <h2>Valider les fiches de frais</h2>
                     <?php
-                    $lesVisiteurs;
-                    $lesMois;
                     $lesMoisParVisiteur=array();
               
                     foreach ($lesMois as $unMois)
@@ -31,8 +30,8 @@
                     }?>    
                     </select>
                         <div class="form-group">
-                        <label for="lstVisiteur">Choisir le visiteur : </label>
-                            <select id = "lstVisiteur" name="Visiteur" class="form-control" onchange="myfunction()">
+                        <label for="Visiteur">Choisir le visiteur : </label>
+                            <select id = "lstVisiteur" name="visiteur" class="form-control" onchange="myfunction()">
                                 <?php
                                 foreach ($lesVisiteurs as $unVisiteur) {
                                 $id = $unVisiteur['id'];
@@ -58,6 +57,16 @@
                             <?php
                             $idParDefault=array_key_first($lesMoisParVisiteur);
                             $tousLesId =array();
+                            
+                            foreach ($visiteurToutValider as $unIdVisiteur):
+                            ?>
+                            <p id = "<?= $unIdVisiteur; ?>" name = "<?= $unIdVisiteur; ?>" class =" mois" style = "visibility:hidden; display:none" >Pas de fiche de frais à valider pour visiteur</p>
+
+                            <?php endforeach;
+                            
+
+                            
+
                             foreach ($lesMoisParVisiteur as $key =>$moisduVisiteur): 
                             $tousLesId[]= "$key";
                             $id = $key;
@@ -69,8 +78,11 @@
                                                                 else{
                                                                     echo "visibility:hidden; display:none" ;
                                                                     } ?>">
-                                <?php foreach ($moisduVisiteur as $moisparVisiteur): ?>
-                                <option  value="<?=$moisparVisiteur;?>"><?=$moisparVisiteur; ?></option>
+                                <?php foreach ($moisduVisiteur as $moisparVisiteur):
+                                    $numAnnee = substr($moisparVisiteur, 0, 4);
+                                    $numMois = substr($moisparVisiteur, 4, 2);
+                                    ?>
+                                <option  value="<?=$moisparVisiteur;?>"><?= $numMois . '-' . $numAnnee ?></option>
                                 <?php endforeach?>
                             </select>
                             <?php endforeach?>
