@@ -41,6 +41,7 @@ case 'selectionnerVisiteur':
 
     //action qui affiche le détail de la fiche de frais pour le visiteur et le mois selectionné
 case 'voirDetailFrais':
+    $lesVisiteurs = $pdo->getLesVisiteurs();
     $idVisiteurSelectionne = filter_input(INPUT_POST, 'lstVisiteur', FILTER_SANITIZE_STRING);
     $leMoisSelectionne = filter_input(INPUT_POST, $idVisiteurSelectionne, FILTER_SANITIZE_STRING);
 

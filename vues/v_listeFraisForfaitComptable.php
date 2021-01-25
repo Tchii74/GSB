@@ -13,9 +13,27 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
+$numAnnee = substr($leMoisSelectionne, 0, 4);
+$numMois = substr($leMoisSelectionne, 4, 2);
+
+foreach ($lesVisiteurs as $unVisiteur) {
+    $id = $unVisiteur['id'];
+    $nom = $unVisiteur['nom'];
+    $prenom = $unVisiteur['prenom'];
+
+    if ($idVisiteurSelectionne == $unVisiteur['id'])
+    {
+       $nomAfficher = $unVisiteur['nom'];
+       $prenomAfficher = $unVisiteur['prenom'];
+    }
+}
+
+
 ?>
+
 <div class="row">  
-<h4>Fiche de frais de : , du mois : <?php echo $leMoisSelectionne?></h4>
+<h4>Fiche visiteur : <?php echo $nomAfficher . ' ' . $prenomAfficher. ' , Mois :  ' .  $numMois. ' ' . $numAnnee?> </h4>
 
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
