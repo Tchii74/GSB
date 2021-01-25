@@ -14,11 +14,13 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 ?>
-<div class="alert validation-modif" role="alert">
-    <?php
-    foreach ($_REQUEST['message'] as $valide) {
-        echo '<p>' . htmlspecialchars($valide) . '</p>';
-    }
-    ?>
 
+<div class="alert validation-modif" role="alert">
+    <p>La fiche à bien été validée ! 
+        <a href="index.php?uc=validerFrais&action=selectionnerVisiteur">Retour au choix des fiches
+        </a>
+    </p>
 </div>
+
+<?php
+

@@ -31,7 +31,7 @@
                     </select>
                         <div class="form-group">
                         <label for="Visiteur">Choisir le visiteur : </label>
-                            <select id = "lstVisiteur" name="visiteur" class="form-control" onchange="myfunction()">
+                            <select id = "lstVisiteur" name="lstVisiteur" class="form-control" onchange="myfunction()">
                                 <?php
                                 foreach ($lesVisiteurs as $unVisiteur) {
                                 $id = $unVisiteur['id'];

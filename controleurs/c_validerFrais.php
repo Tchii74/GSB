@@ -44,33 +44,13 @@ case 'voirDetailFrais':
     $idVisiteurSelectionne = filter_input(INPUT_POST, 'lstVisiteur', FILTER_SANITIZE_STRING);
     $leMoisSelectionne = filter_input(INPUT_POST, $idVisiteurSelectionne, FILTER_SANITIZE_STRING);
 
-    if ($pdo->estPremierFraisMois($idVisiteurSelectionne,$leMoisSelectionne)){
-        ajouterMessage('Pas de fiche de Frais pour ce visiteur ce mois');
-        include 'vues/v_erreurs.php';
-        // réaffichage du visiteur et du mois selectionné
-        $lesVisiteurs = $pdo->getLesVisiteurs();
-        $lesMois = $pdo->getTousLesMois();
-        $visiteurASelectionner = $idVisiteurSelectionne;
-        $moisASelectionner = $leMoisSelectionne;
-        include 'vues/v_listeMoisValiderFiches.php';
-
-    } else {
-
-    // réaffichage du visiteur et du mois selectionné
-    $lesVisiteurs = $pdo->getLesVisiteurs();
-    $lesMois = $pdo->getTousLesMois();
-    $visiteurASelectionner = $idVisiteurSelectionne;
-    $moisASelectionner = $leMoisSelectionne;
-
-    // affichage des détails de la fiche de frais demandée
     $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
     include 'vues/v_listeFraisForfaitComptable.php';
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
     $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteurSelectionne, $leMoisSelectionne);
     include 'vues/v_listeFraisHorsForfaitComptable.php';
     include 'vues/v_validationFicheFrais.php';
-    }    
-
+    
     break;
 
     // action modifier les frais forfait

@@ -23,15 +23,7 @@
               action="index.php?uc=validerFrais&action=corrigerMajFraisForfait" 
               role="form">
             <fieldset>       
-                <?php
-                if ($lesFraisForfait == null)
-                {
-                    ?>
-                    <div class="row">  
-                    <h4>Pas d'éléments forfaitisés</h4>
-                    <?php
-                }
-                ?>
+             
                 <?php
                 foreach ($lesFraisForfait as $unFrais) {
                     $idFrais = $unFrais['idfrais'];
