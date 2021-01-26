@@ -14,7 +14,7 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-
+$navig_cours = 'Accueil';
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,22 +89,23 @@
                     </div>
                     <div class="col-md-8">
                         <ul class="nav nav-pills pull-right" role="tablist">
-                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?>>
-                                <a href="index.php">
+                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } 
+                                       ?>>
+                                <a id ="couleurOrange" href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
                                     Accueil
                                 </a>
                             </li>
                             
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=validerFrais&action=selectionnerVisiteur">
+                                <a id ="couleurOrange" href="index.php?uc=validerFrais&action=selectionnerVisiteur">
                                     <span class="glyphicon glyphicon-ok"></span>
                                     Valider les fiches de frais
                                 </a>
                             </li>
 
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=suivreFrais&action=choisirFiche">
+                                <a id ="couleurOrange" href="index.php?uc=suivreFrais&action=choisirFiche">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiement des fiches de frais
                                 </a>
@@ -112,7 +113,7 @@
 
                             <li 
                             <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
+                                <a id ="couleurOrange" href="index.php?uc=deconnexion&action=demandeDeconnexion">
                                     <span class="glyphicon glyphicon-log-out"></span>
                                     Déconnexion
                                 </a>

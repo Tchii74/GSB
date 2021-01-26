@@ -15,6 +15,7 @@
  */
 
 if ($estConnecte) {
+    
     include 'vues/v_accueil.php';
     
 } else {

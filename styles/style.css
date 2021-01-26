@@ -1,3 +1,29 @@
 .header {
     margin-top: 10px;
 }
+
+
+#couleurOrange { color:rgb(233, 136, 39);
+}
+
+
+
+#panel_perso { background-color:rgb(233, 136, 39);
+    border-color:rgb(233, 136, 39);
+}
+
+#panel-primary_perso {border-color:rgb(233, 136, 39)
+}
+
+#btnOrange {
+    color: #fff;
+    background-color: rgb(233, 136, 39);
+    border-color: rgb(172, 98, 25);
+}
+
+#btnOrange:hover{
+    background-color: rgb(201, 112, 23);
+    border-color: rgb(172, 98, 25);
+
+}
+

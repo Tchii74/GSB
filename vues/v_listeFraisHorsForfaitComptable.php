@@ -16,7 +16,7 @@
 ?>
 <hr>
 <div class="row">
-    <div class="panel panel-info">
+    <div class="panel panel-info" id="panel-primary_perso">
         <div class="panel-heading">Descriptif des éléments hors forfait</div>
         <table class="table table-bordered table-responsive">
             <thead>

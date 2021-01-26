@@ -41,10 +41,17 @@ case 'selectionnerVisiteur':
 
     //action qui affiche le détail de la fiche de frais pour le visiteur et le mois selectionné
 case 'voirDetailFrais':
+
     $lesVisiteurs = $pdo->getLesVisiteurs();
+    $lesMois = $pdo->getLesMoisFicheCloturee();
+    $visiteurToutValider = array_diff(array_column($lesVisiteurs,'id'),array_column($lesMois,'idvisiteur'));
+
     $idVisiteurSelectionne = filter_input(INPUT_POST, 'lstVisiteur', FILTER_SANITIZE_STRING);
     $leMoisSelectionne = filter_input(INPUT_POST, $idVisiteurSelectionne, FILTER_SANITIZE_STRING);
 
+    //include 'vues/v_test.php';
+
+    include 'vues/v_choisirVisiteurValiderFrais.php';
     $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionne, $leMoisSelectionne);
     include 'vues/v_listeFraisForfaitComptable.php';
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionne, $leMoisSelectionne);
