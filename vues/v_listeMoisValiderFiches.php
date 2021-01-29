@@ -20,7 +20,7 @@
             <div class = "control-group">
                 <form action="index.php?uc=validerFrais&action=voirDetailFrais" 
                     method="post" role="form">
-                    <h2>Valider les fiches de frais</h2>
+                    <h2 id="couleurOrange">Valider les fiches de frais</h2>
                     <?php
                     $lesMoisParVisiteur=array();
               

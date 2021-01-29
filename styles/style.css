@@ -2,18 +2,19 @@
     margin-top: 10px;
 }
 
-
-#couleurOrange { color:rgb(233, 136, 39);
-}
-
-
-
 #panel_perso { background-color:rgb(233, 136, 39);
     border-color:rgb(233, 136, 39);
 }
 
 #panel-primary_perso {border-color:rgb(233, 136, 39)
 }
+
+#panel-heading_perso {border-color:rgb(233, 136, 39);
+    color: white;
+    background-color: rgb(233, 136, 39);
+}
+
+#th_perso{border:1px solid rgb(233, 136, 39)}
 
 #btnOrange {
     color: #fff;
@@ -26,4 +27,17 @@
     border-color: rgb(172, 98, 25);
 
 }
+#couleurOrange { color:rgb(233, 136, 39);
+}
 
+.couleurOrange a {
+    color: rgb(233, 136, 39);
+}
+li.active_perso > a,
+li.active_perso > a:hover,
+li.active_perso > a:focus {
+    color:white;
+    background-color:  rgb(233, 136, 39);
+  }
+
+ 

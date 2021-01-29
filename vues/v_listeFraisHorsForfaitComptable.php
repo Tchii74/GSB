@@ -17,14 +17,14 @@
 <hr>
 <div class="row">
     <div class="panel panel-info" id="panel-primary_perso">
-        <div class="panel-heading">Descriptif des éléments hors forfait</div>
+        <div class="panel-heading" id ="panel-heading_perso">Descriptif des éléments hors forfait</div>
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
-                    <th class="date">Date</th>
-                    <th class="libelle">Libellé</th>  
-                    <th class="montant">Montant</th>  
-                    <th class="action">&nbsp;</th> 
+                    <th class="date" id="th_perso">Date</th>
+                    <th class="libelle" id="th_perso">Libellé</th>  
+                    <th class="montant" id="th_perso">Montant</th>  
+                    <th class="action" id="th_perso">&nbsp;</th> 
                 </tr>
             </thead>  
             <tbody>

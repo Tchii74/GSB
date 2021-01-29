@@ -15,8 +15,8 @@
  */
 ?>
 <hr>
-<div class="panel panel-primary">
-    <div class="panel-heading">Fiche de frais de <?php echo $nomAfficher.' ' . $prenomAfficher?> du mois 
+<div class="panel panel-primary" id="panel-primary_perso">
+    <div class="panel-heading" id="panel-heading_perso">Fiche de frais de <?php echo $nomAfficher.' ' . $prenomAfficher?> du mois 
         <?php echo $numMois . '-' . $numAnnee ?> : </div>
     <div class="panel-body">
         <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
@@ -24,8 +24,8 @@
         <strong><u>Montant validé :</u></strong> <?php echo $montantValide ?>
     </div>
 </div>
-<div class="panel panel-info">
-    <div class="panel-heading">Eléments forfaitisés</div>
+<div class="panel panel-info" id="panel-primary_perso">
+    <div class="panel-heading" id="panel-heading_perso">Eléments forfaitisés</div>
     <table class="table table-bordered table-responsive">
         <tr>
             <?php
@@ -47,11 +47,11 @@
         </tr>
     </table>
 </div>
-<div class="panel panel-info">
-    <div class="panel-heading">Descriptif des éléments hors forfait - 
+<div class="panel panel-info" id="panel-primary_perso">
+    <div class="panel-heading" id="panel-heading_perso">Descriptif des éléments hors forfait - 
         <?php echo $nbJustificatifs ?> justificatifs reçus</div>
     <table class="table table-bordered table-responsive">
-        <tr>
+        <tr >
             <th class="date">Date</th>
             <th class="libelle">Libellé</th>
             <th class='montant'>Montant</th>                
@@ -61,7 +61,7 @@
             $date = $unFraisHorsForfait['date'];
             $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
             $montant = $unFraisHorsForfait['montant']; ?>
-            <tr>
+            <tr id="th_perso">
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>

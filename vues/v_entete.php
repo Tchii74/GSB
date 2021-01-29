@@ -14,7 +14,7 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-$navig_cours = 'Accueil';
+//$navig_cours = 'Accueil';
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,31 +89,38 @@ $navig_cours = 'Accueil';
                     </div>
                     <div class="col-md-8">
                         <ul class="nav nav-pills pull-right" role="tablist">
-                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } 
+                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active_perso" <?php }
+                                        else{ ?> class="couleurOrange"<?php }
                                        ?>>
-                                <a id ="couleurOrange" href="index.php">
+                                <a  href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
                                     Accueil
                                 </a>
                             </li>
                             
-                            <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a id ="couleurOrange" href="index.php?uc=validerFrais&action=selectionnerVisiteur">
+                            <li <?php if ($uc == 'validerFrais') { ?>class="active_perso"<?php } 
+                                        else{ ?> class="couleurOrange"<?php }
+                                        ?>>
+                                <a  href="index.php?uc=validerFrais&action=selectionnerVisiteur">
                                     <span class="glyphicon glyphicon-ok"></span>
                                     Valider les fiches de frais
                                 </a>
                             </li>
 
-                            <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a id ="couleurOrange" href="index.php?uc=suivreFrais&action=choisirFiche">
+                            <li <?php if ($uc == 'suivreFrais') { ?>class="active_perso"<?php } 
+                                        else{ ?> class="couleurOrange"<?php }
+                                        ?>>
+                                <a  href="index.php?uc=suivreFrais&action=choisirFiche">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiement des fiches de frais
                                 </a>
                             </li>
 
                             <li 
-                            <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
-                                <a id ="couleurOrange" href="index.php?uc=deconnexion&action=demandeDeconnexion">
+                            <?php if ($uc == 'deconnexion') { ?>class="active_perso"<?php } 
+                                    else{ ?> class="couleurOrange"<?php }
+                                    ?>>
+                                <a  href="index.php?uc=deconnexion&action=demandeDeconnexion">
                                     <span class="glyphicon glyphicon-log-out"></span>
                                     Déconnexion
                                 </a>

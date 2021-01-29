@@ -20,7 +20,7 @@
             <div class = "control-group">
                 <form action="index.php?uc=suivreFrais&action=voirFrais" 
                     method="post" role="form">
-                    <h2>Suivre le paiement des fiches de frais</h2>
+                    <h2 id="couleurOrange">Suivre le paiement des fiches de frais</h2>
                     <?php
                     $lesVisiteurs;
                     $lesMois;
